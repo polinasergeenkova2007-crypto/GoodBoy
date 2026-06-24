@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Арт-практика</title>
+    <link rel="stylesheet" href="./styles.css?v=83" />
+  </head>
+  <body>
+    <main class="app" aria-live="polite">
+      <section class="stage" aria-label="Интерактивная сцена">
+        <img class="scene scene-current" alt="" draggable="false" />
+        <img class="scene scene-next" alt="" draggable="false" />
+        <svg class="scene-cover-svg" aria-hidden="true" focusable="false">
+          <defs>
+            <filter id="paper-tear">
+              <feTurbulence type="fractalNoise" baseFrequency="0.038" numOctaves="3" seed="8" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="46" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <mask id="reveal-mask" maskUnits="userSpaceOnUse">
+              <rect class="mask-fill" x="0" y="0" fill="black" />
+              <ellipse class="mask-feather" cx="0" cy="0" rx="0" ry="0" fill="white" opacity="0.3" filter="url(#paper-tear)" />
+              <ellipse class="mask-hole" cx="0" cy="0" rx="0" ry="0" fill="white" filter="url(#paper-tear)" />
+            </mask>
+          </defs>
+          <image class="scene-cover-image" x="0" y="0" preserveAspectRatio="xMidYMid slice" mask="url(#reveal-mask)" />
+        </svg>
+
+        <div class="reveal-edge" aria-hidden="true"></div>
+        <div class="veil" aria-hidden="true"></div>
+        <div class="ambient-layer" aria-hidden="true"></div>
+        <div class="cake-game-layer" aria-label="Мини-игра приготовления торта"></div>
+        <div class="cake-game-ui-layer" aria-label="Интерфейс мини-игры"></div>
+        <div class="sign-layer" aria-hidden="true">
+          <img class="store-sign" src="./assets/overlays/sign.png" alt="" draggable="false" />
+        </div>
+
+        <header class="topbar">
+          <button class="nav-button home-button" type="button">Главная</button>
+        </header>
+
+        <div class="hotspots" aria-label="Переходы по объектам"></div>
+        <div class="scene-actions" aria-label="Кнопки сцены"></div>
+
+        <section class="menu-panel" aria-label="Меню десертов" aria-hidden="true">
+          <button class="menu-close" type="button" aria-label="Закрыть меню">×</button>
+          <div class="menu-heading">
+            <p class="scene-kicker">Special menu</p>
+            <h2>GOOD BOY</h2>
+          </div>
+          <div class="menu-tabs" role="tablist" aria-label="Разделы меню"></div>
+          <div class="catalog-track" aria-live="polite"></div>
+        </section>
+
+        <section class="story-panel" aria-label="Праздничное окно" aria-hidden="true">
+          <button class="story-close" type="button" aria-label="Закрыть окно">×</button>
+          <div class="cake-builder" aria-live="polite"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./script.js?v=83"></script>
+  </body>
+</html>
