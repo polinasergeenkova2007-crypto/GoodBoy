@@ -855,6 +855,12 @@ function getScene(id) {
   return scenes.find((scene) => scene.id === id) || scenes[0];
 }
 
+function setSceneTheme(id) {
+  const sceneId = String(id);
+  stage.dataset.scene = sceneId;
+  document.body.dataset.scene = sceneId;
+}
+
 function navigateTo(id, options = {}) {
   if (locked || id === activeScene) return;
 
@@ -870,7 +876,7 @@ function navigateTo(id, options = {}) {
 
   locked = true;
   activeScene = id;
-  stage.dataset.scene = String(id);
+  setSceneTheme(id);
   if (id !== 3) {
     renderCakeGame(id);
   }
@@ -1060,7 +1066,7 @@ function renderScene(id, options = {}) {
       : isTabletView() && scene.tabletActions
         ? scene.tabletActions
         : scene.actions;
-  stage.dataset.scene = String(scene.id);
+  setSceneTheme(scene.id);
   updateSceneMetrics();
   renderAmbient(scene.id);
   renderCakeGame(scene.id);
@@ -2071,9 +2077,11 @@ function handlePointerMove(event) {
   const rect = stage.getBoundingClientRect();
   const x = (event.clientX - rect.left) / rect.width - 0.5;
   const y = (event.clientY - rect.top) / rect.height - 0.5;
+  const maxShiftX = Math.min(42, rect.width * 0.045);
+  const maxShiftY = Math.min(28, rect.height * 0.035);
 
-  parallax.targetX = x * -62;
-  parallax.targetY = y * -40;
+  parallax.targetX = x * -maxShiftX;
+  parallax.targetY = y * -maxShiftY;
 }
 
 function resetParallax() {
