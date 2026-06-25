@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Zeequada";
-  src: url("./assets/fonts/Zeequada.woff2") format("woff2");
+  src: url("./assets/fonts/ofont.ru_Zeequada.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Some Notes";
-  src: url("./assets/fonts/SomeNotes.woff2") format("woff2");
+  src: url("./assets/fonts/ofont.ru_Zeequada 2.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
